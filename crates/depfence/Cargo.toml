@@ -1,0 +1,39 @@
+[package]
+name = "depfence"
+description = "Checks dependency-graph rules against the resolved package graph"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+# Releases ship as prebuilt binaries and through the Homebrew tap, not crates.io.
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+color-eyre.workspace = true
+
+# CLI
+# Drops colors when stdout is not a terminal or `NO_COLOR` is set.
+anstream.workspace = true
+clap.workspace = true
+owo-colors.workspace = true
+
+# Guppy answers reachability and feature-resolution queries over the resolved Cargo package graph.
+guppy.workspace = true
+
+# Policy file parsing
+serde.workspace = true
+toml.workspace = true
+
+[dev-dependencies]
+googletest.workspace = true
+indoc.workspace = true
+# Test fixtures spell `cargo metadata` output as JSON.
+serde_json.workspace = true
+# The CLI tests write a small Cargo workspace to a temporary directory.
+tempfile.workspace = true

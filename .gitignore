@@ -1,0 +1,9 @@
+.DS_Store
+/target/
+/.task/
+.cooldown.lock
+
+# goreleaser and zig
+goreleaser-dist/
+.intentionally-empty-file.o
+*_compiler_family.o

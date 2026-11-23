@@ -1,0 +1,78 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.0.1"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/romnn/depfence"
+authors = ["romnn <contact@romnn.com>"]
+keywords = ["dependencies", "policy", "lint", "cargo", "cli"]
+categories = ["command-line-utilities", "development-tools"]
+
+[workspace.dependencies]
+anstream = "1.0.0"
+clap = { version = "4.6", features = ["derive"] }
+# Span-trace capture is off: depfence opens no tracing spans.
+color-eyre = { version = "0.6.5", default-features = false, features = ["track-caller"] }
+googletest = "0.14.4"
+guppy = "0.19.1"
+indoc = "2.0.7"
+owo-colors = "4.4"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.150"
+tempfile = "3.27.0"
+toml = "1.2.0"
+
+[workspace.metadata.cargo-fc]
+install_missing_targets = true
+dedupe = true
+aggregate_targets = false
+targets = [
+  "x86_64-unknown-linux-gnu",
+  "x86_64-pc-windows-gnu",
+  "aarch64-apple-darwin",
+]
+
+[workspace.metadata.cargo-fc.subcommands.lint]
+# A warning on any target fails the lint run, while builds and tests keep warnings as warnings.
+pedantic = true
+
+[workspace.metadata.cargo-fc.subcommands.udeps]
+maximal_features = true
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+[workspace.lints.rust]
+warnings = { level = "warn", priority = -1 }
+unsafe_code = "deny"
+unused_must_use = "deny"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "deny", priority = -1 }
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+unreachable = "deny"
+unimplemented = "deny"
+todo = "deny"
+dbg_macro = "deny"
+indexing_slicing = "deny"
+missing_errors_doc = "warn"
+await_holding_lock = "deny"
+# A module with submodules lives in `foo/mod.rs`, never as `foo.rs` beside a `foo/` directory.
+self_named_module_files = "deny"
+# Every `#[allow]` must carry `reason = "..."`.
+allow_attributes_without_reason = "deny"
+
+# Allowed
+map_unwrap_or = "allow"
+assigning_clones = "allow"
+struct_excessive_bools = "allow"
