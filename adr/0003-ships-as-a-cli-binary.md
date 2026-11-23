@@ -1,6 +1,7 @@
 # 3. depfence ships as a CLI binary, not as a library or a crates.io package
 
-**Status:** accepted · **Date:** 2026-11-23
+**Status:** superseded by [ADR 4](0004-ships-on-crates-io-and-as-prebuilt-binaries.md) · **Date:**
+2026-11-23
 
 ## Context
 

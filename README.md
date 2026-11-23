@@ -12,8 +12,9 @@ Cargo workspaces are supported today.
 ```bash
 brew install --cask romnn/tap/depfence
 
-# Or install from source
-cargo install --locked --git https://github.com/romnn/depfence depfence
+# Or with Cargo
+cargo binstall depfence
+cargo install --locked depfence
 ```
 
 With [mise](https://mise.jdx.dev):

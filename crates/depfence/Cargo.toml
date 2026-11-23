@@ -8,8 +8,7 @@ repository.workspace = true
 authors.workspace = true
 keywords.workspace = true
 categories.workspace = true
-# Releases ship as prebuilt binaries and through the Homebrew tap, not crates.io.
-publish = false
+readme = "../../README.md"
 
 [lints]
 workspace = true

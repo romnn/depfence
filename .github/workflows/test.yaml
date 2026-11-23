@@ -37,3 +37,19 @@ jobs:
           cache-on-failure: true
       - name: Feature-combination tests
         run: task test:fc
+
+  publish:
+    name: publish (dry-run)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+      - name: Publish crates (dry-run)
+        uses: romnn/publish-crates@main
+        with:
+          dry-run: true
+          resolve-versions: true
